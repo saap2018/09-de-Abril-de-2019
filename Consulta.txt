@@ -1,0 +1,8 @@
+SELECT tiempo,PlacasVehiculo,Lugar FROM ingresos INNER JOIN (SELECT vehiculos.NombreCliente, vehiculos.Marca, vehiculos.TipoV,  FROM vehiculos) as A WHERE ingresos.PlacasVehiculo = vehiculos.Placas
+
+create VIEW disponibilidadp
+as select DISTINCT (ingresos.fecha) as Fecha_Ingreso, (ingresos.tiempo) as Hora_Entrada,  ingresos.PlacasVehiculo, ingresos.Lugar,vehiculos.NombreCliente,vehiculos.Marca, (vehiculos.TipoV) as Tipo 
+from ingresos
+left join vehiculos
+on ingresos.PlacasVehiculo = vehiculos.Placas  
+ORDER BY ingresos.Lugar
